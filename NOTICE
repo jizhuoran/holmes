@@ -1,0 +1,32 @@
+# Third-party notices
+
+This package depends on or interoperate with the following components. Obtain and comply with each license separately.
+
+## EasyFHE
+
+- Project: https://example.org/ANONYMOUS_BACKEND
+- Runtime source/wheel: supplied by the user and required to expose the
+  bounded/reusable-baby `hoisted_mac_sum` interface documented in this tree.
+- Verify the license of the exact EasyFHE source revision or wheel you install.
+- The EasyFHE binary wheel is **not** redistributed in this folder by default.
+
+## QuaRot
+
+- Project: https://github.com/spcl/QuaRot
+- Used for Stage-A weight rotation (`third_party/QuaRot`, user-cloned).
+- Follow QuaRot’s upstream license.
+
+## Meta Llama 3
+
+- Model: `meta-llama/Meta-Llama-3-8B`
+- Weights are **not** shipped. Users must accept Meta’s license and download separately.
+
+## Python / scientific stack
+
+- numpy, sympy, mpmath, safetensors, triton, PyTorch, Hugging Face `transformers` — respective licenses.
+
+## Polynomial coefficients
+
+Fitted Softmax / RMSNorm / SiLU coefficient JSON files under
+`assets/polynomials/` are research artifacts produced for
+this FHE stack. They are redistributed under the package LICENSE (GPL-3.0-or-later).

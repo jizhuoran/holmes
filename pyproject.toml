@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=77,<82"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "holmes-fhe"
+version = "0.1.0"
+authors = [{name = "ANONYMOUS_AUTHOR"}]
+description = "Holmes: encrypted Llama-3-8B prefill, KV cache and decode on EasyFHE/CKKS"
+readme = "README.md"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE", "NOTICE"]
+requires-python = ">=3.12"
+# EasyFHE itself is not on PyPI: it comes from a compiled source checkout
+# (EASYFHE_SOURCE_DIR) or a compatible wheel; see README.md.
+dependencies = [
+    "setuptools<82",
+    "numpy>=2.2,<3",
+    "sympy>=1.13,<2",
+    "safetensors>=0.4",
+    "mpmath>=1.3",
+    "typing_extensions>=4.10",
+    "triton==3.3.1",
+]
+
+[tool.setuptools.packages.find]
+include = ["llama3fhe", "llama3fhe.*", "archive", "archive.*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = "-p no:cacheprovider"
+markers = [
+    "gpu: creates a real CUDA context (auto-skipped without a GPU; deselect with -m 'not gpu')",
+]
+
+[dependency-groups]
+dev = ["ruff>=0.16", "pytest>=8"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+# F = pyflakes parity (the existing gate), I = deterministic import order.
+select = ["F", "I"]
+# Package __init__ modules re-export their public surface.
+per-file-ignores = { "**/__init__.py" = ["F401"] }
+
+[tool.ruff.lint.isort]
+known-first-party = ["llama3fhe"]

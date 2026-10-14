@@ -1,0 +1,6 @@
+# Extra deps for Stage-A QuaRot rotation (plaintext conversion).
+# Install into a CUDA PyTorch environment separate from or in addition to env_fhe.
+torch
+transformers
+safetensors
+fast-hadamard-transform
